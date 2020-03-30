@@ -30,3 +30,6 @@ Every generation starts with the population of 200 birds. Every bird has it's ow
 <p align="center">
   <img src="gifs/attaboy.gif" height=600 width=400>
 </p>
+Libraries used:
+p5.js
+<a href=""https://p5js.org/>processing</a>
