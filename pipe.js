@@ -1,40 +1,50 @@
-let gap = 150;
-
 class Pipe {
-  constructor(x) {
-    this.x = x;
-    this.y = 0;
-    this.velocity = 2;
-    this.width = 25;
-    this.height = random(height / 6, (3 / 4) * height);
-    this.bottom = height - (this.height + gap);
+  constructor() {
+    // How big is the empty space
+    let spacing = 125;
+    // Where is th center of the empty space
+    let centery = random(spacing, height - spacing);
+
+    // Top and bottom of pipe
+    this.top = centery - spacing / 2;
+    this.bottom = height - (centery + spacing / 2);
+    // Starts at the edge
+    this.x = width;
+    // Width of pipe
+    this.w = 80;
+    // How fast
+    this.speed = 6;
   }
 
-  show() {
-    rect(this.x, this.y, this.width, this.height);
-    rect(this.x, this.height + gap, this.width, this.bottom);
-  }
-
-  move() {
-    this.x -= this.velocity;
-  }
-
-  collided() {
-    let halfBirdHeight = 28 / 2;
-    let halfBirdwidth = 28 / 2;
-    if (
-      bird.y - halfBirdHeight < this.height ||
-      bird.y + halfBirdHeight > this.height + gap
-    ) {
-      //if this.w is huge, then we need different collision model
-      if (
-        bird.x + halfBirdwidth > this.x &&
-        bird.x - halfBirdwidth < this.x + 25
-      ) {
+  // Did this pipe hit a bird?
+  hits(bird) {
+    if (bird.y - bird.r < this.top || bird.y + bird.r > height - this.bottom) {
+      if (bird.x > this.x && bird.x < this.x + this.w) {
         return true;
       }
     }
-
     return false;
+  }
+
+  // Draw the pipe
+  show() {
+    noStroke();
+    fill(255, 0, 255, 100);
+    rect(this.x, 0, this.w, this.top);
+    rect(this.x, height - this.bottom, this.w, this.bottom);
+  }
+
+  // Update the pipe
+  update() {
+    this.x -= this.speed;
+  }
+
+  // Has it moved offscreen?
+  offscreen() {
+    if (this.x < -this.w) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
