@@ -1,4 +1,4 @@
-# INT-404-PROJECT
+# INT-404-PROJECT CA3 KI18GX(G1) ROLL12 
 Project submission for CA3 a flappy bird game which runs on the basis of NEAT neuro evolution of augmented topologies which is basically mixture of genetic algorithm and neural networks.
 <p>To test for youself click, <a href="https://a8hay.github.io/INT-404-PROJECT">here</a></p>
 
